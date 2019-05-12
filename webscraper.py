@@ -2,13 +2,13 @@ from bs4 import BeautifulSoup
 import requests
 import json
 
-url = 'http://ethans_fake_twitter_site.surge.sh/'
+url = 'http://twitter.com/i/moments'
 response = requests.get(url, timeout=5)
 content = BeautifulSoup(response.content, "html.parser")
 
 
 tweetArr = []
-for tweet in content.findAll('div', attrs={"class": "tweetcontainer"}):
+for tweet in content.findAll('div', attrs={"class": "MomentCapsuleSummary-details"}):
     tweetObject = {
         "author": tweet.find('h2', attrs={"class": "author"}).text,
         "date": tweet.find('h5', attrs={"class": "dateTime"}).text,
