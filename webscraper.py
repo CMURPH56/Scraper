@@ -14,5 +14,10 @@ for tweet in content.findAll('div', attrs={"class": "MomentCapsuleSummary-detail
       "link" : tweet.a['href']
     }
     tweetArr.append(tweetObject)
+
+for test in tweetArr:
+  if("WWE" in test['description']):
+    print(test['link'])
+
 with open('twitterData.json', 'w') as outfile:
     json.dump(tweetArr, outfile)
