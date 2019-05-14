@@ -9,10 +9,10 @@ content = BeautifulSoup(response.content, "html.parser")
 
 tweetArr = []
 for tweet in content.findAll('div', attrs={"class": "MomentCapsuleSummary-details"}):
-  print(tweet)
-  tweetObject = {
-      "title": tweet.find('span', attrs={"class": "MomentCapsuleSubtitle-context"}).text,
-  }
-  tweetArr.append(tweetObject)
+    tweetObject = {
+      "description": tweet.find("div", attrs={"class":"MomentCapsuleSummary-description"}).text,
+      "link" : tweet.a['href']
+    }
+    tweetArr.append(tweetObject)
 with open('twitterData.json', 'w') as outfile:
     json.dump(tweetArr, outfile)
